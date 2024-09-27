@@ -1,3 +1,4 @@
+using AudioInsight.Contracts.Responses.Categories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AudioInsight.API.Controllers;
@@ -5,27 +6,32 @@ namespace AudioInsight.API.Controllers;
 [Route("[controller]")]
 public class CategoriesController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
 
-    private readonly ILogger<CategoriesController> _logger;
-
-    public CategoriesController(ILogger<CategoriesController> logger)
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetCategoryResponse))]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetCategory()
     {
-        _logger = logger;
+        throw new NotImplementedException();
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(CreateCategoryResponse))]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+    public async Task<IActionResult> CreateCategory()
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
-        .ToArray();
+        throw new NotImplementedException();
+    }
+
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UpdateCategoryResponse))]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+    public async Task<IActionResult> UpdateCategory()
+    {
+        throw new NotImplementedException();
+    }
+
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteCategory()
+    {
+        throw new NotImplementedException();
     }
 }
