@@ -1,6 +1,6 @@
 ﻿namespace AudioInsight.Contracts.Requests.Categories;
 
-public record GetCategoryRequest
+public record GetAllCategoriesRequest
 {
     public const string Route = "/category";
 }

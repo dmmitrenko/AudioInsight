@@ -2,4 +2,4 @@
 
 namespace AudioInsight.Contracts.Responses.Categories;
 
-public record GetCategoryResponse(List<ConversationTopic> topics);
+public record GetAllCategoriesResponse(List<ConversationTopic> topics);

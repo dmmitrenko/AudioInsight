@@ -1,8 +1,6 @@
-﻿using AudioInsight.Contracts.Models;
+﻿namespace AudioInsight.Contracts.Requests.Categories;
 
-namespace AudioInsight.Contracts.Requests.Categories;
-
-public record CreateCategoryRequest(string topic, List<Point> points)
+public record CreateCategoryRequest(string title, List<string> points)
 {
-    public const string Route = " /category";
+    public const string Route = "/category";
 }

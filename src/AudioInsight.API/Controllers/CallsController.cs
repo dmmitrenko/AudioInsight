@@ -19,7 +19,7 @@ public class CallsController : ControllerBase
     [HttpGet(GetCallRequest.Route)]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetCallResponse))]
     [ProducesResponseType(StatusCodes.Status202Accepted)]
-    public async Task<IActionResult> GetCall([FromRoute] GetCallRequest request)
+    public async Task<IActionResult> GetCall()
     {
         throw new NotImplementedException();
     }
