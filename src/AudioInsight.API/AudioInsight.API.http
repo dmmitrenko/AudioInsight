@@ -1,0 +1,6 @@
+@AudioInsight.API_HostAddress = http://localhost:5257
+
+GET {{AudioInsight.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
