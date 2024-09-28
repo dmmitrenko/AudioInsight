@@ -1,6 +1,8 @@
 ﻿using AudioInsight.Domain;
 using AudioInsight.Infrastructure.Repositories;
+using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Linq.Expressions;
 
 namespace AudioInsight.DataContext.Repositories;
 
@@ -33,14 +35,42 @@ public class CategoryRepository : ICategoryRepository
         return await _context.Categories.Find(c => c.Id == id).FirstOrDefaultAsync();
     }
 
-    public async Task<bool> IsCategoryExists(string title)
+    public async Task<bool> IsCategoryExists(Expression<Func<Category, bool>> filter)
     {
-        var filter = Builders<Category>.Filter.Eq(c => c.Title, title);
-        var exists = await _context.Categories
-            .Find(filter)
-            .Limit(1)
-            .AnyAsync();
+        return await _context.Categories.Find(filter).Limit(1).AnyAsync();
+    }
 
-        return exists;
+    public async Task<Category> Update(Category category)
+    {
+        var filter = Builders<Category>.Filter.Eq(c => c.Id, category.Id);
+
+        var updateDefinitions = new List<UpdateDefinition<Category>>();
+
+        if (!string.IsNullOrEmpty(category.Title))
+        {
+            updateDefinitions.Add(Builders<Category>.Update.Set(c => c.Title, category.Title));
+        }
+
+        if (category.Points != null && category.Points.Any())
+        {
+            updateDefinitions.Add(Builders<Category>.Update.Set(c => c.Points, category.Points));
+        }
+
+        if (!updateDefinitions.Any())
+        {
+            return await _context.Categories.Find(filter).FirstOrDefaultAsync();
+        }
+
+        var update = Builders<Category>.Update.Combine(updateDefinitions);
+
+        var options = new FindOneAndUpdateOptions<Category>
+        {
+            ReturnDocument = ReturnDocument.After
+        };
+
+        var updatedCategory = await _context.Categories
+            .FindOneAndUpdateAsync(filter, update, options);
+
+        return updatedCategory;
     }
 }

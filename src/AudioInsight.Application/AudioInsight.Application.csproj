@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\contracts\AudioInsight.Contracts\AudioInsight.Contracts.csproj" />
     <ProjectReference Include="..\AudioInsight.Domain\AudioInsight.Domain.csproj" />
     <ProjectReference Include="..\AudioInsight.Infrastructure\AudioInsight.Infrastructure.csproj" />
   </ItemGroup>

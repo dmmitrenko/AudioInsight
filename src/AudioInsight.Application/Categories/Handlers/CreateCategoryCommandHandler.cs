@@ -22,11 +22,11 @@ public class CreateCategoryCommandHandler : IRequestHandler<CreateNewCategoryCom
 
     public async Task<Category> Handle(CreateNewCategoryCommand request, CancellationToken cancellationToken)
     {
-        var isCategoryExists = await _repository.IsCategoryExists(request.title);
+        var isCategoryExists = await _repository.IsCategoryExists(c => c.Title == request.title);
         
         if (isCategoryExists)
         {
-            throw new DomainException();
+            throw new DomainException("This category already exists", System.Net.HttpStatusCode.UnprocessableEntity);
         }
 
         var category = _mapper.Map<Category>(request);

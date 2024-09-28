@@ -1,4 +1,5 @@
 ﻿using AudioInsight.Domain;
+using System.Linq.Expressions;
 
 namespace AudioInsight.Infrastructure.Repositories;
 public interface ICategoryRepository
@@ -11,5 +12,7 @@ public interface ICategoryRepository
 
     Task Delete(Guid id);
 
-    Task<bool> IsCategoryExists(string title);
+    Task<Category> Update(Category category);
+
+    Task<bool> IsCategoryExists(Expression<Func<Category, bool>> filter);
 }

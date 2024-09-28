@@ -9,8 +9,12 @@ public class CategoryProfile : Profile
     public CategoryProfile()
     {
         CreateMap<CreateNewCategoryCommand, Category>()
-            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => Guid.NewGuid()))
-            .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.title))
-            .ForMember(dest => dest.Points, opt => opt.MapFrom(src => src.points));
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => Guid.NewGuid()));
+        //.ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.title))
+        //.ForMember(dest => dest.Points, opt => opt.MapFrom(src => src.points));
+
+        CreateMap<UpdateCategoryCommand, Category>();
+
+        CreateMap<Category, Contracts.Models.Category>();
     }
 }
