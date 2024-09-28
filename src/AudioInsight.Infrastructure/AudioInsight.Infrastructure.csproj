@@ -7,13 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="MediatR" Version="12.4.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\AudioInsight.Domain\AudioInsight.Domain.csproj" />
-    <ProjectReference Include="..\AudioInsight.Infrastructure\AudioInsight.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

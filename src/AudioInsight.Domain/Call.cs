@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace AudioInsight.Domain;
 
-namespace AudioInsight.Domain;
-internal class Call
+public class Call
 {
 }

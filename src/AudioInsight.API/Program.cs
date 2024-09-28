@@ -1,15 +1,34 @@
+using AudioInsight.Application.Categories;
+using AudioInsight.Application.Categories.Handlers;
+using AudioInsight.DataContext;
+using AudioInsight.DataContext.Repositories;
+using AudioInsight.Infrastructure.Repositories;
+using AudioInsight.Infrastructure.Settings;
+using Microsoft.Extensions.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateCategoryCommandHandler).Assembly));
+builder.Services.AddAutoMapper(typeof(CategoryProfile));
+
+builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection(nameof(MongoDbSettings)));
+
+builder.Services.AddSingleton(sp =>
+{
+    var options = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
+    return options;
+});
+
+builder.Services.AddScoped<MongoDbContext>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
