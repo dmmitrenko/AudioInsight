@@ -5,7 +5,11 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AudioInsight.API", "src\AudioInsight.API\AudioInsight.API.csproj", "{91C84131-E1F0-4CF3-8B17-E265C1D6C783}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioInsight.Contracts", "contracts\AudioInsight.Contracts\AudioInsight.Contracts.csproj", "{AF4CD6A0-BEAD-42F7-9938-06D9012FC43F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AudioInsight.Contracts", "contracts\AudioInsight.Contracts\AudioInsight.Contracts.csproj", "{AF4CD6A0-BEAD-42F7-9938-06D9012FC43F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioInsight.Domain", "src\AudioInsight.Domain\AudioInsight.Domain.csproj", "{AA109DDC-5CDD-4035-988B-0FB7903F294A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioInsight.Application", "src\AudioInsight.Application\AudioInsight.Application.csproj", "{36DBE65E-F7D5-47E2-939E-EE8425FD417E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{AF4CD6A0-BEAD-42F7-9938-06D9012FC43F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF4CD6A0-BEAD-42F7-9938-06D9012FC43F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF4CD6A0-BEAD-42F7-9938-06D9012FC43F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA109DDC-5CDD-4035-988B-0FB7903F294A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA109DDC-5CDD-4035-988B-0FB7903F294A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA109DDC-5CDD-4035-988B-0FB7903F294A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA109DDC-5CDD-4035-988B-0FB7903F294A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36DBE65E-F7D5-47E2-939E-EE8425FD417E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36DBE65E-F7D5-47E2-939E-EE8425FD417E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36DBE65E-F7D5-47E2-939E-EE8425FD417E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36DBE65E-F7D5-47E2-939E-EE8425FD417E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

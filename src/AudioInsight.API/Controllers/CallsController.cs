@@ -1,5 +1,6 @@
-﻿using AudioInsight.Contracts.Requests.Calls;
-using AudioInsight.Contracts.Responses.Calls;
+﻿using AudioInsight.Contracts.Models;
+using AudioInsight.Contracts.Requests.Calls;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AudioInsight.API.Controllers;
@@ -7,20 +8,28 @@ namespace AudioInsight.API.Controllers;
 [ApiController]
 public class CallsController : ControllerBase
 {
+    private readonly IMediator _mediator;
+
+    public CallsController(IMediator mediator)
+    {
+        _mediator = mediator;
+    }
 
     [HttpPost(CreateCallRequest.Route)]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CreateCallResponse))]    
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CallId))]    
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> CreateNewCall([FromBody] CreateCallRequest request)
     {
-        throw new NotImplementedException();
+        var callId = await _mediator.Send(request);
+        return Ok(callId);
     }
 
     [HttpGet(GetCallRequest.Route)]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetCallResponse))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Call))]
     [ProducesResponseType(StatusCodes.Status202Accepted)]
     public async Task<IActionResult> GetCall()
     {
-        throw new NotImplementedException();
+        var call = await _mediator.Send(new GetCallRequest());
+        return Ok(call);
     }
 }

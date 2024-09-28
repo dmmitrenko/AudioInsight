@@ -1,8 +1,6 @@
-﻿using AudioInsight.Contracts.Models;
+﻿namespace AudioInsight.Contracts.Models;
 
-namespace AudioInsight.Contracts.Responses.Calls;
-
-public record GetCallResponse(
+public record Call(
     Guid id,
     string name,
     string location,
