@@ -1,5 +1,5 @@
 ﻿using AudioInsight.Application.Categories.Commands;
-using AudioInsight.Domain;
+using AudioInsight.Domain.Model;
 using AudioInsight.Infrastructure.Repositories;
 using MediatR;
 

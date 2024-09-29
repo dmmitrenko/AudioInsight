@@ -1,4 +1,4 @@
-﻿namespace AudioInsight.Domain;
+﻿namespace AudioInsight.Domain.Enums;
 
 public enum EmotionalTone
 {

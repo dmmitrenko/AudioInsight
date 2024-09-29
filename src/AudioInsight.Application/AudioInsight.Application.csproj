@@ -9,10 +9,13 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\contracts\AudioInsight.Contracts.Queue\AudioInsight.Contracts.Queue.csproj" />
     <ProjectReference Include="..\..\contracts\AudioInsight.Contracts\AudioInsight.Contracts.csproj" />
     <ProjectReference Include="..\AudioInsight.Domain\AudioInsight.Domain.csproj" />
     <ProjectReference Include="..\AudioInsight.Infrastructure\AudioInsight.Infrastructure.csproj" />

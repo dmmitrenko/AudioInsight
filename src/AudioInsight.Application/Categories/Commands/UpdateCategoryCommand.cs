@@ -1,4 +1,4 @@
-﻿using AudioInsight.Domain;
+﻿using AudioInsight.Domain.Model;
 using MediatR;
 
 namespace AudioInsight.Application.Categories.Commands;

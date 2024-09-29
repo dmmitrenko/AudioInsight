@@ -1,5 +1,6 @@
 ﻿using AudioInsight.Application.Categories.Commands;
 using AudioInsight.Infrastructure;
+using AudioInsight.Infrastructure.Exceptions;
 using AudioInsight.Infrastructure.Repositories;
 using MediatR;
 
@@ -16,7 +17,7 @@ public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryComman
 
     public async Task<Unit> Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
     {
-        var isCategoryExists = await _repository.IsCategoryExists(c => c.Id == new Guid(request.categoryId));
+        var isCategoryExists = await _repository.IsEntityExists(c => c.Id == new Guid(request.categoryId));
 
         if (isCategoryExists)
         {

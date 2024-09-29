@@ -1,4 +1,6 @@
-﻿namespace AudioInsight.Domain;
+﻿using AudioInsight.Domain.Enums;
+
+namespace AudioInsight.Domain.Model;
 
 public class Call
 {
@@ -13,4 +15,6 @@ public class Call
     public string TranscribedText { get; set; }
 
     public List<string> Categories { get; set; }
+
+    public CallStatus Status { get; set; }
 }

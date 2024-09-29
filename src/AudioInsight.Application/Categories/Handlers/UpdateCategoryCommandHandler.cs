@@ -1,6 +1,6 @@
 ﻿using AudioInsight.Application.Categories.Commands;
-using AudioInsight.Domain;
-using AudioInsight.Infrastructure;
+using AudioInsight.Domain.Model;
+using AudioInsight.Infrastructure.Exceptions;
 using AudioInsight.Infrastructure.Repositories;
 using AutoMapper;
 using MediatR;
@@ -20,7 +20,7 @@ public class UpdateCategoryCommandHandler : IRequestHandler<UpdateCategoryComman
 
     public async Task<Category> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
     {
-        var isCategoryExists = await _repository.IsCategoryExists(c => c.Id == new Guid(request.id));
+        var isCategoryExists = await _repository.IsEntityExists(c => c.Id == new Guid(request.id));
 
         if (!isCategoryExists)
         {

@@ -1,22 +1,22 @@
-﻿using AudioInsight.Domain;
+﻿using AudioInsight.Domain.Model;
 using AudioInsight.Infrastructure.Settings;
 using MongoDB.Driver;
 
 namespace AudioInsight.DataContext;
 public class MongoDbContext
 {
-    private readonly IMongoDatabase _database;
+    public IMongoDatabase Database { get; }
 
     public MongoDbContext(MongoDbSettings settings)
     {
         var client = new MongoClient(settings.ConnectionString);
-        _database = client.GetDatabase(settings.DatabaseName);
+        Database = client.GetDatabase(settings.DatabaseName);
         CreateIndexes();
     }
 
-    public IMongoCollection<Category> Categories => _database.GetCollection<Category>("Categories");
+    public IMongoCollection<Category> Categories => Database.GetCollection<Category>("Categories");
 
-    public IMongoCollection<Call> Calls => _database.GetCollection<Call>("Calls");
+    public IMongoCollection<Call> Calls => Database.GetCollection<Call>("Calls");
 
     private void CreateIndexes()
     {

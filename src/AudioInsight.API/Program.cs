@@ -40,6 +40,7 @@ builder.Services.AddSingleton(sp =>
 
 builder.Services.AddScoped<MongoDbContext>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICallRepository, CallRepository>();
 
 builder.Services.AddSwaggerGen();
 

@@ -22,7 +22,7 @@ public class Dispatcher : IDisposable
     {
         var factory = new ConnectionFactory
         {
-            HostName = _configuration.Hostname,
+            HostName = _configuration.HostName,
             Port = _configuration.Port,
             UserName = _configuration.Username,
             Password = _configuration.Password

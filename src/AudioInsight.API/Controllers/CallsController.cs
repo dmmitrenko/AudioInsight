@@ -21,16 +21,16 @@ public class CallsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> CreateNewCall([FromBody] CreateCallRequest request)
     {
-        var callId = await _mediator.Send(new CreateCallCommand(request.audioUrl));
+        var callId = await _mediator.Send(new AnalyzeCallCommand(request.audioUrl));
         return Ok(callId);
     }
 
     [HttpGet(GetCallRequest.Route)]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Call))]
     [ProducesResponseType(StatusCodes.Status202Accepted)]
-    public async Task<IActionResult> GetCall()
+    public async Task<IActionResult> GetCall([FromRoute] string id)
     {
-        var call = await _mediator.Send(new GetCallRequest());
+        var call = await _mediator.Send(new GetCallCommand(c => c.Id == new Guid(id)));
         return Ok(call);
     }
 }

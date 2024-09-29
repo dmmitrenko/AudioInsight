@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace AudioInsight.Infrastructure;
+namespace AudioInsight.Infrastructure.Exceptions;
 
 public class DomainException : Exception
 {
