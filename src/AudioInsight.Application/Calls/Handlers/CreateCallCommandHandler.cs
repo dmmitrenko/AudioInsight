@@ -5,8 +5,16 @@ namespace AudioInsight.Application.Calls.Handlers;
 
 public class CreateCallCommandHandler : IRequestHandler<CreateCallCommand, Guid>
 {
-    public Task<Guid> Handle(CreateCallCommand request, CancellationToken cancellationToken)
+    private readonly Dispatcher _dispatcher;
+
+    public CreateCallCommandHandler(Dispatcher dispatcher)
     {
-        throw new NotImplementedException();
+        _dispatcher = dispatcher;
+    }
+
+    public async Task<Guid> Handle(CreateCallCommand request, CancellationToken cancellationToken)
+    {
+        _dispatcher.SendMessage("audio.processing.#", request.audioUrl);
+        return Guid.NewGuid();
     }
 }

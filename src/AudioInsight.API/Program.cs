@@ -1,3 +1,4 @@
+﻿using AudioInsight.Application;
 using AudioInsight.Application.Categories;
 using AudioInsight.Application.Categories.Handlers;
 using AudioInsight.DataContext;
@@ -15,6 +16,21 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Creat
 builder.Services.AddAutoMapper(typeof(CategoriesProfile));
 
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection(nameof(MongoDbSettings)));
+
+builder.Services.Configure<QueueConnectionSettings>(builder.Configuration.GetSection(nameof(QueueConnectionSettings)));
+
+builder.Services.AddSingleton<Dispatcher>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
 
 builder.Services.AddSingleton(sp =>
 {

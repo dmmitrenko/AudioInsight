@@ -1,4 +1,5 @@
-﻿using AudioInsight.Contracts.Models;
+﻿using AudioInsight.Application.Calls.Commands;
+using AudioInsight.Contracts.Models;
 using AudioInsight.Contracts.Requests.Calls;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +21,7 @@ public class CallsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> CreateNewCall([FromBody] CreateCallRequest request)
     {
-        var callId = await _mediator.Send(request);
+        var callId = await _mediator.Send(new CreateCallCommand(request.audioUrl));
         return Ok(callId);
     }
 

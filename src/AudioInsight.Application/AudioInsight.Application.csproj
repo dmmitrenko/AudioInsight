@@ -9,13 +9,33 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="MediatR" Version="12.4.1" />
-    <PackageReference Include="Vosk" Version="0.3.38" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\contracts\AudioInsight.Contracts\AudioInsight.Contracts.csproj" />
     <ProjectReference Include="..\AudioInsight.Domain\AudioInsight.Domain.csproj" />
     <ProjectReference Include="..\AudioInsight.Infrastructure\AudioInsight.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\Admin\.nuget\packages\vosk\0.3.38\build\lib\win-x64\libgcc_s_seh-1.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\Admin\.nuget\packages\vosk\0.3.38\build\lib\win-x64\libstdc++-6.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\Admin\.nuget\packages\vosk\0.3.38\build\lib\win-x64\libstdc++-6.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\Admin\.nuget\packages\vosk\0.3.38\build\lib\win-x64\libvosk.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\Admin\.nuget\packages\vosk\0.3.38\build\lib\win-x64\libwinpthread-1.dll" />
   </ItemGroup>
 
 </Project>
