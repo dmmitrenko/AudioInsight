@@ -4,14 +4,12 @@ using AutoMapper;
 
 namespace AudioInsight.Application.Categories;
 
-public class CategoryProfile : Profile
+public class CategoriesProfile : Profile
 {
-    public CategoryProfile()
+    public CategoriesProfile()
     {
         CreateMap<CreateNewCategoryCommand, Category>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => Guid.NewGuid()));
-        //.ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.title))
-        //.ForMember(dest => dest.Points, opt => opt.MapFrom(src => src.points));
 
         CreateMap<UpdateCategoryCommand, Category>();
 

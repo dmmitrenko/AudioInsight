@@ -34,7 +34,7 @@ public class CategoriesController : ControllerBase
     public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryRequest request)
     {
         var category = await _mediator.Send(new CreateNewCategoryCommand(request.title, request.points));
-        return Ok(_mapper.Map<Category>(category));
+        return CreatedAtAction(nameof(GetAllCategories), _mapper.Map<Category>(category));
     }
 
     [HttpPut(UpdateCategoryRequest.Route)]

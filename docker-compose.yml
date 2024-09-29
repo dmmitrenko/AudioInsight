@@ -3,7 +3,7 @@ version: '3.9'
 services:
   mongo:
     image: mongo
-    container_name: your_id_devchallenge_21_mongo
+    container_name: mongo_audio_insight_devchallenge_21
     ports:
       - "27017:27017"
     volumes:
@@ -11,7 +11,7 @@ services:
 
   api:
     build: .
-    container_name: your_id_devchallenge_21_api
+    container_name: api_audio_insight_devchallenge_21
     ports:
       - "8080:8080"
     depends_on:
