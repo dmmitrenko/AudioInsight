@@ -1,25 +1,14 @@
-﻿using AudioInsight.Application;
-using AudioInsight.Application.Categories;
-using AudioInsight.Application.Categories.Handlers;
-using AudioInsight.DataContext;
-using AudioInsight.DataContext.Repositories;
-using AudioInsight.Infrastructure.Repositories;
-using AudioInsight.Infrastructure.Settings;
-using Microsoft.Extensions.Options;
+﻿using AudioInsight.API.Extensions;
+using AudioInsight.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateCategoryCommandHandler).Assembly));
-builder.Services.AddAutoMapper(typeof(CategoriesProfile));
-
-builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection(nameof(MongoDbSettings)));
-
-builder.Services.Configure<QueueConnectionSettings>(builder.Configuration.GetSection(nameof(QueueConnectionSettings)));
-
-builder.Services.AddSingleton<Dispatcher>();
+builder.Services.ConfigureServices();
+builder.Services.AddDbContext();
+builder.Services.AddApplicationSettings(builder.Configuration);
 
 builder.Services.AddCors(options =>
 {
@@ -32,19 +21,11 @@ builder.Services.AddCors(options =>
         });
 });
 
-builder.Services.AddSingleton(sp =>
-{
-    var options = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
-    return options;
-});
-
-builder.Services.AddScoped<MongoDbContext>();
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<ICallRepository, CallRepository>();
-
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
