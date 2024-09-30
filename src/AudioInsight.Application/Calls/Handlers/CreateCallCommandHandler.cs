@@ -24,7 +24,7 @@ public class CreateCallCommandHandler : IRequestHandler<CreateCallCommand>
 
         var isCallExists = await _repository.IsEntityExists(c => c.Id == call.Id);
 
-        if (isCallExists)
+        if (!isCallExists)
         {
             throw new DomainException("Call not found.", System.Net.HttpStatusCode.NotFound);
         }

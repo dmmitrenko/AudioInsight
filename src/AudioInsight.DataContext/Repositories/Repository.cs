@@ -29,9 +29,8 @@ public class Repository<T> : IRepository<T> where T : class
         return await _collection.Find(_ => true).ToListAsync();
     }
 
-    public async Task<T> GetById(Guid id)
+    public async Task<T> Get(Expression<Func<T, bool>> filter)
     {
-        var filter = Builders<T>.Filter.Eq("Id", id);
         return await _collection.Find(filter).FirstOrDefaultAsync();
     }
 

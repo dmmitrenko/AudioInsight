@@ -1,5 +1,7 @@
-﻿using AudioInsight.Infrastructure.Settings;
+﻿using AudioInsight.Contracts.Queue;
+using AudioInsight.Infrastructure.Settings;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using RabbitMQ.Client;
 using System.Text;
 
@@ -33,11 +35,11 @@ public class Dispatcher : IDisposable
         _channel.ExchangeDeclare(exchange: _configuration.ExchangeName, type: ExchangeType.Topic);
     }
 
-    public void SendMessage(string routingKey, string message)
+    public void SendMessage(string routingKey, StartAudioAnalysis command)
     {
-        var body = Encoding.UTF8.GetBytes(message);
+        var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(command));
         _channel.BasicPublish(exchange: _configuration.ExchangeName, routingKey: routingKey, basicProperties: null, body: body);
-        Console.WriteLine($"Message sent to exchange '{_configuration.ExchangeName}' with routing key '{routingKey}': {message}");
+        Console.WriteLine($"Message sent to exchange '{_configuration.ExchangeName}' with routing key '{routingKey}': {command}");
     }
 
     public void Dispose()

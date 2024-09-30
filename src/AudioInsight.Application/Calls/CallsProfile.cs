@@ -1,5 +1,6 @@
 ﻿using AudioInsight.Application.Calls.Commands;
 using AudioInsight.Contracts.Queue;
+using AudioInsight.Domain.Enums;
 using AudioInsight.Domain.Model;
 using AutoMapper;
 
@@ -11,7 +12,7 @@ public class CallsProfile : Profile
     {
         CreateMap<AudioAnalysisCompleted, CreateCallCommand>();
         CreateMap<CreateCallCommand, Call>()
-            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => Guid.NewGuid()))
+            .ForMember(dest => dest.EmotionalTone, opt => opt.MapFrom(src => Enum.Parse(typeof(EmotionalTone), src.emotionalTone)))
             .ForMember(dest => dest.Status, opt => opt.Ignore());
     }
 }

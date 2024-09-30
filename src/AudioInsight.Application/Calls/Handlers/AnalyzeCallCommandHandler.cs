@@ -25,7 +25,11 @@ public class AnalyzeCallCommandHandler : IRequestHandler<AnalyzeCallCommand, Gui
         };
 
         await _repository.Add(call);
-        _dispatcher.SendMessage("audio.processing.#", request.audioUrl);
+        _dispatcher.SendMessage("audio.processing.#", new Contracts.Queue.StartAudioAnalysis
+        {
+            Id = call.Id,
+            AudioUrl = request.audioUrl,
+        });
 
         return call.Id;
     }

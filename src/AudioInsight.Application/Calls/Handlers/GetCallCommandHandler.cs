@@ -1,7 +1,9 @@
 ﻿using AudioInsight.Application.Calls.Commands;
 using AudioInsight.Domain.Model;
+using AudioInsight.Infrastructure.Exceptions;
 using AudioInsight.Infrastructure.Repositories;
 using MediatR;
+using System.Net;
 
 namespace AudioInsight.Application.Calls.Handlers;
 
@@ -14,8 +16,16 @@ public class GetCallCommandHandler : IRequestHandler<GetCallCommand, Call>
         _repository = repository;
     }
 
-    public Task<Call> Handle(GetCallCommand request, CancellationToken cancellationToken)
+    public async Task<Call> Handle(GetCallCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var call = await _repository.Get(request.filter);
+
+        if (call is null)
+            throw new DomainException("No such call was found", HttpStatusCode.NotFound);
+
+        if (call.Status == Domain.Enums.CallStatus.Unprocessed)
+            throw new DomainException("The call has not been processed yet", HttpStatusCode.Accepted);
+
+        return call;
     }
 }

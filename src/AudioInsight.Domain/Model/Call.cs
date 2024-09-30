@@ -12,7 +12,7 @@ public class Call
 
     public EmotionalTone EmotionalTone { get; set; }
 
-    public string TranscribedText { get; set; }
+    public string Text { get; set; }
 
     public List<string> Categories { get; set; }
 

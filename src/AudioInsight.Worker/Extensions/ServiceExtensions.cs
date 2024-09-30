@@ -15,10 +15,10 @@ public static class ServiceExtensions
 {
     public static void AddServices(this IServiceCollection services)
     {
-        services.AddScoped<ICategoryRepository, CategoryRepository>();
-        services.AddScoped<ICallRepository, CallRepository>();
+        services.AddTransient<ICategoryRepository, CategoryRepository>();
+        services.AddTransient<ICallRepository, CallRepository>();
 
-        services.AddSingleton<Dispatcher>();
+        services.AddTransient<Dispatcher>();
     }
 
     public static void AddMediatR(this IServiceCollection services)
@@ -35,7 +35,7 @@ public static class ServiceExtensions
             return options;
         });
 
-        services.AddScoped<MongoDbContext>();
+        services.AddTransient<MongoDbContext>();
     }
 
     public static void AddAppSettings(this IServiceCollection services, IConfiguration configuration)
@@ -46,7 +46,7 @@ public static class ServiceExtensions
 
     public static void AddQueueServices(this IServiceCollection services)
     {
-        services.AddSingleton<IMessageConsumerFactory, MessageConsumerFactory>();
-        services.AddSingleton<IMessageConsumer, AudioAnalysisCompletedConsumer>();
+        services.AddTransient<IMessageConsumerFactory, MessageConsumerFactory>();
+        services.AddTransient<IMessageConsumer, AudioAnalysisCompletedConsumer>();
     }
 }

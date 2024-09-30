@@ -1,6 +1,8 @@
 ﻿namespace AudioInsight.Contracts.Queue;
 public class AudioAnalysisCompleted
 {
+    public string Id { get; set; }
+
     public string Name { get; set; }
 
     public string Text { get; set; }
